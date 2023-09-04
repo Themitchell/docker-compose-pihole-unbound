@@ -1,0 +1,50 @@
+---
+version: '3'
+
+services:
+  pihole:
+    hostname: ${PIHOLE_HOSTNAME}
+    container_name: pihole
+    image: pihole/pihole:latest
+    depends_on:
+      - unbound
+    volumes:
+      - ./pihole/data:/etc/pihole/
+      - ./pihole/config/adlists.list:/etc/pihole/adlists.list
+      - ./pihole/config/custom.list:/etc/pihole/custom.list
+      - ./pihole/dnsmasq.d/:/etc/dnsmasq.d/
+      - ./pihole/log/:/var/log/pihole/
+    ports:
+      - 443:443/tcp
+      - 53:53/tcp
+      - 53:53/udp
+      - 67:67/udp
+      - 80:80/tcp
+    env_file: .env
+    environment:
+      TZ: ETC/UTC
+      PIHOLE_UID: 1000
+      PIHOLE_GID: 1000
+      VIRTUAL_HOST: ${PIHOLE_HOSTNAME}
+      PIHOLE_DNS_: unbound#53
+    restart: unless-stopped
+
+  unbound:
+    hostname: unbound
+    container_name: unbound
+    image: mvance/unbound-rpi:latest
+    volumes:
+      - ./unbound/log/unbound.log:/opt/unbound/etc/unbound/unbound.log
+    ports:
+      - 5335:53/tcp
+      - 5335:53/udp
+    restart: unless-stopped
+
+  filebeat:
+    hostname: filebeat
+    container_name: filebeat
+    image: docker.elastic.co/beats/filebeat:7.13.0-arm64
+    volumes:
+      - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./pihole/log:/var/log/pihole
+      - ./unbound/log:/var/log/unbound
