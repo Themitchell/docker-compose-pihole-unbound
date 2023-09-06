@@ -3,7 +3,7 @@ version: '3'
 
 services:
   pihole:
-    hostname: ${PIHOLE_HOSTNAME}
+    hostname: ${VIRTUAL_HOST}
     container_name: pihole
     image: pihole/pihole:latest
     depends_on:
@@ -25,7 +25,6 @@ services:
       TZ: ETC/UTC
       PIHOLE_UID: 1000
       PIHOLE_GID: 1000
-      VIRTUAL_HOST: ${PIHOLE_HOSTNAME}
       PIHOLE_DNS_: unbound#53
     restart: unless-stopped
 
