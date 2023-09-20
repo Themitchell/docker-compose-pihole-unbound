@@ -1,1 +1,7 @@
 .env
+
+log/pihole/*
+!log/pihole/.gitkeep
+
+data/pihole/*
+!data/pihole/.gitkeep
