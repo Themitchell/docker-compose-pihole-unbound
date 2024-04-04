@@ -25,7 +25,7 @@ services:
       TZ: ETC/UTC
       PIHOLE_UID: 1000
       PIHOLE_GID: 1000
-      PIHOLE_DNS_: unbound#53
+      # PIHOLE_DNS_: unbound#53
     restart: unless-stopped
 
   unbound:
