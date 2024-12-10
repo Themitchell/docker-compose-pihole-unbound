@@ -1,12 +1,13 @@
 10.0.10.2 unifi.themitchell.co.uk
-10.0.10.2 hass.themitchell.co.uk
 10.0.10.2 cam.themitchell.co.uk
 10.0.10.3 pihole-a.themitchell.co.uk
 10.0.10.4 pihole-b.themitchell.co.uk
 10.0.10.5 pihole-c.themitchell.co.uk
 10.0.20.2 ns.themitchell.co.uk
-10.0.20.50 influxdb.themitchell.co.uk
+10.0.20.50 frigate.themitchell.co.uk
 10.0.20.50 grafana.themitchell.co.uk
+10.0.10.50 hass.themitchell.co.uk
+10.0.20.50 influxdb.themitchell.co.uk
 10.0.20.5 venus.themitchell.co.uk
 10.0.20.21 living-room-speakers.themitchell.co.uk
 10.0.20.22 front-room-speakers.themitchell.co.uk
