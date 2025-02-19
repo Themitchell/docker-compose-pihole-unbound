@@ -1,6 +1,4 @@
 ---
-version: '3'
-
 services:
   pihole:
     hostname: ${VIRTUAL_HOST}
@@ -10,7 +8,7 @@ services:
       - unbound
     volumes:
       - ./config/pihole/adlists.list:/etc/pihole/adlists.list
-      - ./config/pihole/custom.list:/etc/pihole/custom.list
+      - ./config/pihole/pihole.toml:/etc/pihole/pihole.toml
       - ./config/dnsmasq.d/:/etc/dnsmasq.d/
       - ./data/pihole:/etc/pihole/
       - ./log/pihole/:/var/log/pihole/
